@@ -1,15 +1,11 @@
-/*
-280
-Sorting Class Demo
-Gunnar Marquardt && Thomas Evon
-*/
+//280 Sorting Class Demo.cpp
 #include <iostream>
 #include <ctime>
 #include <string>
 using namespace std;
 
-const int MAX_CHARS = 10;
-const int MAX_STRINGS = 1000;
+const int MAX_CHARS = 1;
+const int MAX_STRINGS = 10;
 
 void cr(int n = 1) {
 	for (int i = 0; i < n; i++)
@@ -28,7 +24,7 @@ public:
 	bool isSorted();
 };
 
-Sorter::Sorter() { //there's nothing to do
+Sorter::Sorter() { // empty constructor
 }
 
 string Sorter::randomString() {
@@ -83,30 +79,73 @@ bool Sorter::isSorted() {
 } //isSorted
 
 int main() {
-	srand(time(NULL));
-	clock_t start, stop;
+	int input;
 	Sorter s1 = Sorter(); //use s1 with bubble sort
-	s1.load();
 	Sorter s2 = Sorter(s1); //use s2 with selection sort
 	Sorter s3 = Sorter(s1); //use s3 with insertion sort
 	Sorter s4 = Sorter(s1); //use s4 with shell sort
 	Sorter s5 = Sorter(s1); //use s5 with quick sort
 
-	//test bubble sort
-	start = clock();
-	s1.bubbleSort();
-	stop = clock();
-	//s1.display();
-	if (!s1.isSorted()) {
-		cout << "Error: bubble sort failed";
-		cr(2);
-		exit(EXIT_FAILURE);
+	while (1) {
+		cout << "---------------------------------------------" << endl;
+		cout << "Let's use some sorting algorithms!!" << endl;
+		cout << "Enter 1 to perform a bubble sort " << endl;
+		cout << "Enter 2 to perform a selection sort " << endl;
+		cout << "Enter 3 to perform an insertion sort " << endl;
+		cout << "Enter 4 to perform a shell sort " << endl;
+		cout << "Enter 5 to perform a quick sort " << endl;
+		cout << "Enter 6 to quit the program " << endl;
+		cout << "---------------------------------------------" << endl << endl;
+		cout << "Enter your choice: "; 
+		cin >> input;
+		switch (input) {
+		case 1:
+			s1.load();
+			char yesNo;
+			cout << "display unsorted array? (Y/N): "; 
+			cin >> yesNo;
+			if (yesNo == 'Y') {
+				cout << "Here is the unsorted array: " << endl;
+				s1.display();
+				cout << endl; 
+			}
+			srand(time(NULL));
+			clock_t start, stop;
+
+			//test bubble sort
+			start = clock();
+			s1.bubbleSort();
+			stop = clock();
+			if (!s1.isSorted()) {
+				cout << "Error: bubble sort failed";
+				cr(2);
+				exit(EXIT_FAILURE);
+			}
+			else {
+				double elapsedTime = ((double)stop - start) / CLOCKS_PER_SEC;
+				cout << "Bubble sort time: " << elapsedTime << endl;
+				s1.display();
+			}
+			cr(2);
+			break;
+		case 2:
+			cout << "This has not been built yet! " << endl;
+			break;
+		case 3:
+			cout << "This has not been built yet! " << endl;
+			break;
+		case 4:
+			cout << "This has not been built yet! " << endl;
+			break;
+		case 5:
+			cout << "This has not been built yet! " << endl;
+			break;
+		case 6:
+			cout << "Program TERMINATED" << endl;
+			exit(0);
+			break;
+		}
 	}
-	else {
-		double elapsedTime = ((double)stop - start) / CLOCKS_PER_SEC;
-		cout << "Bubble sort time: " << elapsedTime << endl;
-	}
-	cr(2);
 
 	//test selection sort
 
@@ -115,5 +154,7 @@ int main() {
 	//test shell sort
 
 	//test quick sort
-
+	
+	return 0;
 }
+
